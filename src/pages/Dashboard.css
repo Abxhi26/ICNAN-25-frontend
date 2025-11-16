@@ -1,78 +1,11 @@
-.dashboard-container {
-    min-height: 100vh;
-    background-color: #f5f5f5;
-}
-
-.dashboard-nav {
-    background: white;
-    padding: 16px 32px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+.dashboard-page .cards {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    gap: 12px;
+    margin-top: 18px
 }
 
-.dashboard-nav h2 {
-    margin: 0;
-    color: #333;
-    font-size: 20px;
-}
-
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.user-info {
-    color: #666;
-    font-size: 14px;
-}
-
-.logout-button {
-    background-color: #667eea;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s;
-}
-
-.logout-button:hover {
-    background-color: #5568d3;
-}
-
-.dashboard-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-}
-
-.dashboard-content h1 {
-    color: #333;
-    margin-bottom: 8px;
-}
-
-.dashboard-content p {
-    color: #666;
-    margin-bottom: 32px;
-}
-
-.features {
-    background: white;
-    padding: 24px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.features h3 {
-    color: #333;
-    margin-bottom: 16px;
-}
-
-.features ul {
-    color: #666;
-    line-height: 1.8;
+.dashboard-page .card {
+    flex: 1;
+    padding: 18px;
+    text-align: center
 }
