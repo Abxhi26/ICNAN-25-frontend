@@ -1,7 +1,7 @@
 // frontend/src/services/api.js
 const BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000';
 
-let _token = null;
+let _token = localStorage.getItem('token') || null;
 export function setToken(token) { _token = token; localStorage.setItem('token', token); }
 export function clearToken() { _token = null; localStorage.removeItem('token'); }
 
@@ -10,14 +10,15 @@ function authHeaders() {
 }
 
 async function request(path, opts = {}) {
-    const headers = opts.headers || {};
-    // If body is FormData, do not set Content-Type (browser will set boundary)
+    const headers = { ...(opts.headers || {}) };
+
+    // let browser set Content-Type for FormData
     if (!(opts.body instanceof FormData)) {
         headers['Content-Type'] = headers['Content-Type'] || 'application/json';
     }
     headers['Accept'] = headers['Accept'] || 'application/json';
 
-    // Attach Authorization if present
+    // attach auth header if present
     Object.assign(headers, authHeaders());
 
     const res = await fetch(`${BASE}${path}`, { ...opts, headers });
@@ -26,7 +27,7 @@ async function request(path, opts = {}) {
     try { body = text ? JSON.parse(text) : null; } catch { body = text; }
 
     if (!res.ok) {
-        // propagate structured error
+        // keep consistent shape
         throw body || { error: res.statusText || 'Request failed' };
     }
     return body;
@@ -43,8 +44,7 @@ export const searchParticipants = (query) => request(`/participants/search?query
 export const uploadExcel = (file) => {
     const fd = new FormData();
     fd.append('file', file);
-    // do NOT set Content-Type here — request() will avoid setting it
-    return request('/participants/upload-excel', { method: 'POST', body: fd });
+    return request('/participants/upload-excel', { method: 'POST', body: fd }); // headers handled in request()
 };
 export const assignBarcode = (email, barcode) => request('/participants/assign-barcode', {
     method: 'POST', body: JSON.stringify({ email, barcode })

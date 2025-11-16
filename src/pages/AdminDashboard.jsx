@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import * as api from '../services/api';
 import './AdminDashboard.css';
+import { useAuth } from '../context/AuthContext';
 
 export default function AdminDashboard() {
     const [file, setFile] = useState(null);
@@ -14,13 +15,13 @@ export default function AdminDashboard() {
         if (!file) return alert('Pick a file');
 
         try {
-            const r = await api.uploadExcel(file);
-            setResult(r);
+            const res = await api.uploadExcel(file);
+            setResult(res);
         } catch (err) {
-            // handle auth error nicely
-            if (err && err.error && err.error === 'Not authenticated') {
+            if (err && err.error === 'Not authenticated') {
                 alert('You are not authenticated. Please login again as an Admin.');
-                // optionally route to login page
+                logout(); // clear client token & user
+                // optionally redirect to login page
                 return;
             }
             setResult(err); }
