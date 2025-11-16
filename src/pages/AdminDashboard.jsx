@@ -561,19 +561,6 @@ const AdminDashboard = () => {
                             <h2>Upload Registration Report</h2>
                             <p className="instruction">Upload the daily registration report Excel file (.xlsx format)</p>
 
-                            <div className="excel-info">
-                                <strong>Expected columns:</strong>
-                                <ul>
-                                    <li>Reference No.</li>
-                                    <li>Prefix, Name, Gender</li>
-                                    <li>Designation, Institution, Institute Address</li>
-                                    <li>State, Country</li>
-                                    <li>E-Mail, Mobile No.</li>
-                                    <li>Registered Category, Paper Id</li>
-                                    <li>Registration Date, Transaction Id, Invoice No.</li>
-                                    <li>Amount Paid (INR)</li>
-                                </ul>
-                            </div>
 
                             <div className="upload-form">
                                 <input type="file" id="excel-upload" accept=".xlsx,.xls" onChange={handleFileSelect} disabled={loading} />
