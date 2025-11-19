@@ -374,3 +374,53 @@ table td {
         min-width: auto;
     }
 }
+/* Title + Refresh icon row */
+.panel-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+/* Refresh icon styling */
+.refresh-icon {
+    cursor: pointer;
+    font-size: 22px;
+    user-select: none;
+    opacity: 0.75;
+    transition: transform 0.25s ease, opacity 0.2s;
+}
+
+.refresh-icon:hover {
+    opacity: 1;
+    transform: scale(1.18);
+}
+
+/* Spin animation when refreshing */
+.spin {
+    animation: spinAnim 0.9s linear infinite;
+}
+
+@keyframes spinAnim {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Stats box small styling upgrade */
+.stats-box {
+    margin-bottom: 16px;
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--text-main);
+}
+
+/* Table improvements */
+.logs-table {
+    width: 100%;
+    border-collapse: collapse;
+}

@@ -164,6 +164,22 @@ function AdminDashboard() {
             showMsg(setUploadMsg, 'Upload failed', 'error', 6000);
         }
     };
+    const [refreshing, setRefreshing] = useState(false);
+
+    const refreshLogs = async () => {
+        setRefreshing(true);
+        try {
+            const entriesRes = await getAllEntries();
+            const statsRes = await getEntryStats();
+
+            setAllEntries(entriesRes.data || entriesRes);
+            setStats(statsRes.data || statsRes);
+        } catch (err) {
+            console.error("Error refreshing logs", err);
+        }
+        setTimeout(() => setRefreshing(false), 800);
+    };
+
 
     return (
         <div className="admin-dashboard app-container">
@@ -359,13 +375,27 @@ function AdminDashboard() {
             {/* TAB 5: Entry Logs & Stats */}
             {activeTab === 4 && (
                 <div className="panel">
-                    <h3 className="panel-title">Entry Logs</h3>
-                    <div className="stats-row">
-                        <div className="stat-card"><strong>Total Entries</strong><div className="stat-value">{stats.totalEntries || 0}</div></div>
-                        <div className="stat-card"><strong>Unique Participants</strong><div className="stat-value">{stats.uniqueParticipants || 0}</div></div>
+                    <div className="panel-title-row">
+                        <h3 className="panel-title">Entry Logs</h3>
+
+                        {/* Refresh Icon */}
+                        <span
+                            className={`refresh-icon ${refreshing ? 'spin' : ''}`}
+                            onClick={refreshLogs}
+                            title="Refresh Logs"
+                        >
+                            🔄
+                        </span>
                     </div>
 
-                    <table style={{ marginTop: 16 }}>
+                    {/* Stats */}
+                    <div className="stats-box">
+                        <strong>Total Entries:</strong> {stats.totalEntries || 0} <br />
+                        <strong>Unique Participants:</strong> {stats.uniqueParticipants || 0}
+                    </div>
+
+                    {/* Logs Table */}
+                    <table className="logs-table">
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -391,6 +421,7 @@ function AdminDashboard() {
                     </table>
                 </div>
             )}
+
         </div>
     );
 }
