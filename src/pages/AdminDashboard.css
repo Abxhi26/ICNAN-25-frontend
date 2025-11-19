@@ -1,199 +1,376 @@
+/* AdminDashboard.css - improved dark black + deep-red + green accent theme */
+
+:root {
+    --main-bg: linear-gradient(180deg, #040408, #070812);
+    --panel-bg: #0d0f14;
+    --card-bg: #0a0b0f;
+    --glass: rgba(255, 255, 255, 0.02);
+    --text-main: #e8ecf1;
+    --muted: #97a0ad;
+    --accent: #d74b4b;
+    /* deep red */
+    --accent2: rgba(215, 75, 75, 0.12);
+    --success: #6fcf97;
+    --error: #ff6b6b;
+    --border: rgba(255, 255, 255, 0.04);
+}
+
+/* base */
 .admin-dashboard {
     min-height: 100vh;
     background: var(--main-bg);
     color: var(--text-main);
-    padding-bottom: 60px;
 }
 
+/* header */
 .header-bar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 24px 5vw;
-    background: var(--panel-bg);
-    box-shadow: 0 1px 33px 0 var(--accent2);
-    border-radius: 0 0 22px 22px;
+    justify-content: space-between;
+    padding: 18px 5vw;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.25), rgba(10, 10, 16, 0.15));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.header-bar h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
 }
 
 .logout-button {
     background: var(--accent);
-    border: none;
-    padding: 8px 22px;
-    font-weight: 600;
     color: #fff;
-    cursor: pointer;
+    border: 0;
+    padding: 8px 18px;
     border-radius: 10px;
-    box-shadow: 0 2px 16px 0 var(--accent2);
-    transition: background 0.18s;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(215, 75, 75, 0.08);
 }
 
 .logout-button:hover {
-    background: var(--accent2);
+    background: #b83b3b;
 }
 
+/* tabs */
 .tabs {
     display: flex;
-    gap: 18px;
-    padding: 25px 5vw 14px 5vw;
-    background: var(--panel-bg);
-    box-shadow: 0 2px 36px 0 var(--accent2);
-    border-radius: 0 0 22px 22px;
+    gap: 14px;
+    padding: 16px 5vw;
+    align-items: center;
 }
 
 .tab {
-    background: none;
-    color: var(--accent2);
-    border-radius: 18px;
-    font-weight: 600;
-    padding: 10px 28px;
-    font-size: 1.08em;
+    background: transparent;
+    color: var(--muted);
+    border-radius: 12px;
+    padding: 10px 18px;
     cursor: pointer;
-    border: 1.8px solid transparent;
-    transition: all 0.18s;
+    font-weight: 700;
+    border: 1px solid transparent;
 }
 
 .tab:hover,
 .tab.active {
-    background: var(--accent-gradient);
     color: #fff;
-    border-color: var(--accent2);
-    box-shadow: 0 0 24px 3px var(--accent);
+    background: linear-gradient(90deg, rgba(215, 75, 75, 0.12), rgba(40, 40, 45, 0.08));
+    border-color: rgba(215, 75, 75, 0.12);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
 }
 
+/* panel container */
 .panel {
-    max-width: 1040px;
-    margin: 28px auto;
+    max-width: 1120px;
+    margin: 22px auto;
     background: var(--panel-bg);
-    padding: 26px 30px 28px 30px;
-    border-radius: 18px;
-    box-shadow: 0 3px 16px 0 rgba(231, 71, 71, 0.13);
-    border: 2px solid var(--accent2);
-}
-
-input[type="text"],
-input[type="file"],
-textarea {
-    font-size: 16px;
-    width: 320px;
-    padding: 10px 16px;
-    margin-bottom: 14px;
-    background: #16161d;
-    border: 1.7px solid var(--accent2);
-    border-radius: 10px;
-    color: var(--text-main);
-    transition: border-color 0.15s;
-}
-
-input[type="text"]:focus,
-textarea:focus {
-    border-color: var(--accent);
-    outline: none;
-}
-
-button {
-    background: var(--accent);
-    color: #fff;
-    cursor: pointer;
-    border-radius: 10px;
-    padding: 10px 22px;
-    font-weight: 600;
-    border: none;
-    box-shadow: 0 3px 14px 0 var(--accent2);
-    transition: background 0.16s;
-}
-
-button:hover {
-    background: var(--accent2);
-}
-
-.user-row {
-    background: var(--card-bg);
-    padding: 15px 20px;
-    margin-bottom: 12px;
-    border-radius: 10px;
-    border: 1.7px solid var(--accent2);
-    cursor: pointer;
-    color: var(--text-main);
-    display: flex;
-    gap: 22px;
-    justify-content: space-between;
-    transition: box-shadow 0.18s;
-}
-
-.user-row:hover {
-    box-shadow: 0 0 23px var(--accent);
-}
-
-.assign-section {
-    margin-top: 24px;
-    background: var(--glass);
-    padding: 18px 26px;
-    border-radius: 12px;
-    border: 2px dashed var(--accent);
-    box-shadow: inset 0 0 18px 1px var(--accent);
-    color: var(--text-main);
-}
-
-.table-container {
-    background: var(--panel-bg);
-    border-radius: 18px;
     padding: 20px;
-    box-shadow: 0 2px 38px 0 var(--accent2);
-    border: 2px solid var(--accent2);
-    margin: 0 auto;
-    max-width: 1050px;
-    margin-top: 26px;
-    overflow-x: auto;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.6);
 }
 
-table {
-    width: 100%;
+/* title */
+.panel-title {
+    color: var(--accent);
+    margin: 0 0 14px 0;
+    font-size: 18px;
+}
+
+/* search area */
+.search-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.03);
     color: var(--text-main);
-    border-collapse: collapse;
-    font-size: 0.97em;
-    border-radius: 12px;
+    outline: none;
+    font-weight: 600;
 }
 
-th {
+.search-input:focus {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+    border-color: rgba(215, 75, 75, 0.18);
+}
+
+/* results */
+.results-area {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.muted {
+    color: var(--muted);
+    padding: 12px 8px;
+}
+
+/* user row card */
+.user-row {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    padding: 14px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.user-row.selected {
+    box-shadow: 0 8px 24px rgba(215, 75, 75, 0.08);
+    border-color: rgba(215, 75, 75, 0.12);
+}
+
+.user-summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.u-left {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.u-right {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: right;
+    min-width: 200px;
+}
+
+.u-ref {
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.u-name {
+    font-weight: 700;
+    color: #fff;
+}
+
+.u-institution {
+    color: var(--muted);
+    font-size: 0.92em;
+    max-width: 640px;
+}
+
+.u-email,
+.u-phone {
+    color: var(--muted);
+    font-size: 0.92em;
+}
+
+.u-barcode {
+    margin-top: 6px;
+    font-weight: 800;
+    color: var(--muted);
+}
+
+.u-barcode.has {
+    color: var(--success);
+}
+
+/* assign section inline (top of card) */
+.assign-section.assign-top-inline {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.015));
+    border: 1px dashed rgba(215, 75, 75, 0.08);
+}
+
+.assign-label {
+    font-weight: 700;
+    color: var(--muted);
+    min-width: 170px;
+}
+
+.assign-input-inline {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    color: var(--text-main);
+    outline: none;
+    font-weight: 700;
+}
+
+.assign-input-inline:focus {
+    border-color: rgba(111, 207, 151, 0.18);
+    box-shadow: 0 8px 20px rgba(111, 207, 151, 0.04);
+}
+
+/* ghost button */
+.btn-ghost {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    color: var(--muted);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-ghost:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* generic button */
+.btn {
     background: var(--accent);
     color: #fff;
-    padding: 14px 14px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 800;
 }
 
-td {
-    padding: 14px 12px;
-    border-bottom: 1.7px solid var(--border);
+.btn:hover {
+    background: #b83b3b;
 }
 
-@media (max-width: 930px) {
+/* messages */
+.msg {
+    margin-top: 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    display: inline-block;
+    font-weight: 700;
+}
 
-    .panel,
-    .table-container {
-        padding: 22px 17px;
-        margin: 0 12px 30px 12px;
+.msg-success {
+    background: rgba(111, 207, 151, 0.08);
+    color: var(--success);
+    border: 1px solid rgba(111, 207, 151, 0.12);
+}
+
+.msg-error {
+    background: rgba(255, 107, 107, 0.06);
+    color: var(--error);
+    border: 1px solid rgba(255, 107, 107, 0.12);
+}
+
+/* mark entry fields */
+.field-row {
+    margin-bottom: 12px;
+}
+
+/* wide input used in mark entry */
+.wide-input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    color: var(--text-main);
+}
+
+/* table styles */
+.table-container table,
+table th,
+table td {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table th {
+    background: var(--accent);
+    color: #fff;
+    padding: 10px;
+    font-weight: 700;
+    text-align: left;
+}
+
+table td {
+    padding: 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+/* stats */
+.stats-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    flex: 1;
+    text-align: center;
+}
+
+.stat-value {
+    margin-top: 8px;
+    font-weight: 900;
+    font-size: 20px;
+    color: #fff;
+}
+
+@media (max-width:920px) {
+    .user-summary {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    input[type="text"],
-    textarea {
-        width: 100%;
+    .u-right {
+        text-align: left;
+        min-width: auto;
     }
 
-    button {
-        width: 100%;
+    .assign-section.assign-top-inline {
+        flex-direction: column;
+        align-items: stretch;
     }
 
-    .tabs {
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 14px 8px;
-    }
-
-    .header-bar {
-        padding: 18px 4vw;
-        flex-wrap: wrap;
-    }
-
-    .logout-button {
-        margin-top: 12px;
+    .assign-label {
+        min-width: auto;
     }
 }
